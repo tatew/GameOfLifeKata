@@ -9,24 +9,14 @@ export class Board extends Component {
         console.log(this.props.cellStates);
     }
 
-    createRows(rowNum) {
+    createRow(row) {
         return (
             <React.Fragment>
-                <Grid item>
-                    <Cell row={rowNum} col={0} alive={this.props.cellStates[rowNum][0]}/>
-                </Grid>
-                <Grid item>
-                    <Cell row={rowNum} col={1} alive={this.props.cellStates[rowNum][1]}/>
-                </Grid>
-                <Grid item>
-                    <Cell row={rowNum} col={2} alive={this.props.cellStates[rowNum][2]}/>
-                </Grid>
-                <Grid item>
-                    <Cell row={rowNum} col={3} alive={this.props.cellStates[rowNum][3]}/>
-                </Grid>
-                <Grid item>
-                    <Cell row={rowNum} col={4} alive={this.props.cellStates[rowNum][4]}/>
-                </Grid>
+                {row.map((isAlive, i) =>
+                    <Grid item key={i}>
+                        <Cell alive={isAlive}/>
+                    </Grid>
+                )}
             </React.Fragment>
         )
     }
@@ -35,23 +25,14 @@ export class Board extends Component {
         return (
             <React.Fragment>
                 <Grid container spacing={0}>
-                    <Grid container item spacing={0}>
-                        {this.createRows(0)}
-                    </Grid>
-                    <Grid container item spacing={0}>
-                        {this.createRows(1)}
-                    </Grid>
-                    <Grid container item spacing={0}>
-                        {this.createRows(2)}
-                    </Grid>
-                    <Grid container item spacing={0}>
-                        {this.createRows(3)}
-                    </Grid>
-                    <Grid container item spacing={0}>
-                        {this.createRows(4)}
-                    </Grid>
+                    {this.props.cellStates.map((row, i) =>
+                        <Grid container item spacing={0} key={i}>
+                            {this.createRow(row)}
+                        </Grid>
+                    )}
                 </Grid>
-                <button onClick={this.props.onClick}>Click</button>
+                <button onClick={this.props.onClickStart}>Start</button>
+                <button onClick={this.props.onClickStop}>Stop</button>
             </React.Fragment>
         );
     }
