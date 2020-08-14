@@ -4,6 +4,7 @@ import {Cell} from "./Cell";
 
 
 
+
 export class Board extends Component {
     constructor(props) {
         super(props);
