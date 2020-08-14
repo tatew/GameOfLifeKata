@@ -13,7 +13,12 @@ function getCellStates() {
     return cellStates;
 }
 
+function getStateAtLoc(row, col) {
+    return cellStates[row][col];
+}
+
 export const boardModel = {
     createDataModel,
     getCellStates,
+    getStateAtLoc,
 };
